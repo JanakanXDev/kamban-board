@@ -7,7 +7,7 @@ function App() {
   const [priority, setPriority] = useState("Low");
 
   const fetchTasks = async () => {
-    const res = await axios.get("http://localhost:5000/tasks");
+    const res = await axios.get("https://kamban-board-rslf.onrender.com/tasks");
     setTasks(res.data);
   };
 
@@ -18,7 +18,7 @@ function App() {
   const addTask = async () => {
     if (!title) return;
 
-    await axios.post("http://localhost:5000/tasks", {
+    await axios.post("https://kamban-board-rslf.onrender.com/tasks", {
       title,
       priority,
       status: "Todo"
@@ -35,7 +35,7 @@ function App() {
     else if (task.status === "Progress") newStatus = "Done";
 
     await axios.put(
-      `http://localhost:5000/tasks/${task._id}`,
+      `https://kamban-board-rslf.onrender.com/tasks/${task._id}`,
       {
         ...task,
         status: newStatus
@@ -47,7 +47,7 @@ function App() {
 
   const deleteTask = async (id) => {
     await axios.delete(
-      `http://localhost:5000/tasks/${id}`
+      `https://kamban-board-rslf.onrender.com/tasks/${id}`
     );
 
     fetchTasks();
